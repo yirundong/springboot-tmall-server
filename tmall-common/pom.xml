@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- 模块版本，取值相对固定 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父级项目 -->
+    <parent>
+        <groupId>cn.tedu</groupId>
+        <artifactId>tmall-server</artifactId>
+        <version>2.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 当前项目的信息 -->
+    <artifactId>tmall-common</artifactId>
+
+    <!-- 当前项目的依赖项 -->
+    <!-- 注意：各依赖项不要配置version标签，使用父级项目管理的版本即可 -->
+    <!-- 当配置scope为provided时：此依赖项不会被传递 -->
+    <dependencies>
+        <!-- Knife4j Spring Boot：在线API文档 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 基于MyBatis或MyBatis Plus的分页查询框架 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Lombok的依赖项，主要用于简化POJO类的编写 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JJWT（Java JWT） -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>

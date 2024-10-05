@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- 模块版本，取值相对固定 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父级项目 -->
+    <parent>
+        <groupId>cn.tedu</groupId>
+        <artifactId>tmall-server</artifactId>
+        <version>2.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 当前项目的信息 -->
+    <artifactId>tmall-admin</artifactId>
+
+    <!-- 当前项目是父级项目，需要显式的配置packaging为pom -->
+    <packaging>pom</packaging>
+
+    <!-- 列举当前项目的子模块项目 -->
+    <modules>
+        <module>tmall-admin-account</module>
+        <module>tmall-admin-content</module>
+        <module>tmall-admin-mall</module>
+    </modules>
+
+</project>

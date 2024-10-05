@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.account.dao.persist.mapper.UserMapper">
+
+    <!-- UserStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            <include refid="StandardQueryFields"/>
+        FROM
+            account_user
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<UserListItemVO> list(); -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            account_user
+        ORDER BY
+            id
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            id, username, avatar, phone, email,
+            description, enable, last_login_ip, login_count, gmt_last_login
+        </if>
+    </sql>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, username, avatar, phone, email,
+            description, enable, last_login_ip, login_count, gmt_last_login
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap" type="cn.tedu.tmall.admin.account.pojo.vo.UserStandardVO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="description" property="description"/>
+        <result column="enable" property="enable"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="login_count" property="loginCount"/>
+        <result column="gmt_last_login" property="gmtLastLogin"/>
+    </resultMap>
+
+    <resultMap id="ListResultMap" type="cn.tedu.tmall.admin.account.pojo.vo.UserListItemVO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="description" property="description"/>
+        <result column="enable" property="enable"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="login_count" property="loginCount"/>
+        <result column="gmt_last_login" property="gmtLastLogin"/>
+    </resultMap>
+
+</mapper>

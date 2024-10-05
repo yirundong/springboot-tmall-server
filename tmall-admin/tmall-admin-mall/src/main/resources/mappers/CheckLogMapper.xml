@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.mall.dao.persist.mapper.CheckLogMapper">
+
+    <!-- List<CheckLogListItemVO> listByResourceType(int resourceType); -->
+    <select id="listByResourceType" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            mall_check_log
+        WHERE
+            resource_type=#{resourceType}
+        ORDER BY
+            id DESC
+    </select>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, resource_type, resource_id, resource_brief, original_state,
+            new_state, check_user_id, check_username, check_remarks, gmt_check
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.CheckLogListItemVO">
+        <id column="id" property="id"/>
+        <result column="resource_type" property="resourceType"/>
+        <result column="resource_id" property="resourceId"/>
+        <result column="resource_brief" property="resourceBrief"/>
+        <result column="original_state" property="originalState"/>
+        <result column="new_state" property="newState"/>
+        <result column="check_user_id" property="checkUserId"/>
+        <result column="check_username" property="checkUsername"/>
+        <result column="check_remarks" property="checkRemarks"/>
+        <result column="gmt_check" property="gmtCheck"/>
+    </resultMap>
+
+</mapper>

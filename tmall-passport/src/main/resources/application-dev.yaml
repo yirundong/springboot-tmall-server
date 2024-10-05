@@ -1,0 +1,52 @@
+# ############################################################################################### #
+# 此文件是【开发环境】的配置文件，必须在主配置中通过spring.profiles.active激活此配置，此文件中的各配置才会生效 #
+# ############################################################################################### #
+
+# 服务器的配置
+server:
+  # 服务占用的端口
+  port: 28081
+
+# 自定义配置
+tmall:
+  # 数据库的数据源的配置
+  datasource:
+    # 数据库主机
+    host: localhost
+    # 数据库端口
+    port: 3306
+    # 数据库用户名
+    username: root
+    # 数据库密码
+    password: 54250yrd
+    # 初始化连接数量
+    initial-size: 5
+    # 最大激活数量
+    max-active: 20
+  # Redis配置
+  redis:
+    # 主机
+    host: localhost
+    # 端口
+    port: 6379
+    # 用户名
+    username: ~
+    # 密码
+    password: ~
+  # 数据访问的相关配置
+  dao:
+    # 查询数据时，默认的每页记录数，建议值为10~30之间
+    default-query-page-size: 5
+  # JWT的配置
+  jwt:
+    # JWT的有效时长，以分钟为单位
+    duration-in-minute: 86400
+    # JWT的secretKey
+    secret-key: k4^&32flj5Ss(Jf&*(5%DK3da
+
+# 日志配置
+logging:
+  # 显示级别
+  level:
+    # 某根包（配置将应用于此包及子孙包）的显示级别
+    cn.tedu.tmall: trace

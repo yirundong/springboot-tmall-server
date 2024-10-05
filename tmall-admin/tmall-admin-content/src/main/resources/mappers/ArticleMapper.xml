@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.content.dao.persist.mapper.ArticleMapper">
+
+    <!-- ArticleStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            <include refid="StandardQueryFields"/>
+        FROM
+            content_article
+        LEFT JOIN content_article_detail ON content_article.id=content_article_detail.article_id
+        WHERE
+            content_article.id=#{id}
+    </select>
+
+    <!-- List<ArticleListItemVO> list(); -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            content_article
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <!-- List<ArticleSearchVO> listSearchVO() -->
+    <select id="listSearchVO" resultMap="SearchListResultMap">
+        SELECT
+            <include refid="SearchListQueryFields"/>
+        FROM
+            content_article
+        WHERE
+            check_state=1 AND is_display=1
+        ORDER BY
+            id DESC
+    </select>
+
+    <!-- List<ArticleListItemVO> listByCategory(Long categoryId); -->
+    <select id="listByCategory" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            content_article
+        WHERE
+            category_id=#{categoryId}
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            content_article.id,
+            content_article.author_id,
+            content_article.author_name,
+            content_article.category_id,
+            content_article.category_name,
+            content_article.title,
+            content_article.brief,
+            content_article.keywords,
+            content_article.ip,
+            content_article.sort,
+            content_article.cover_url,
+            content_article.up_count,
+            content_article.down_count,
+            content_article.click_count,
+            content_article.comment_count,
+            content_article.check_state,
+            content_article.is_display,
+            content_article.is_recommend,
+            content_article.gmt_create,
+            content_article.gmt_modified,
+            content_article_detail.detail
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tmall.admin.content.pojo.vo.ArticleStandardVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="title" property="title"/>
+        <result column="brief" property="brief"/>
+        <result column="keywords" property="keywords"/>
+        <result column="cover_url" property="coverUrl"/>
+        <result column="ip" property="ip"/>
+        <result column="sort" property="sort"/>
+        <result column="up_count" property="upCount"/>
+        <result column="down_count" property="downCount"/>
+        <result column="click_count" property="clickCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="check_state" property="checkState"/>
+        <result column="is_display" property="isDisplay"/>
+        <result column="is_recommend" property="isRecommend"/>
+        <result column="detail" property="detail"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, author_id, author_name, category_id, category_name,
+            title, brief, cover_url, keywords, ip,
+            sort, up_count, down_count, click_count, comment_count,
+            check_state, is_display, is_recommend
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.tmall.admin.content.pojo.vo.ArticleListItemVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="title" property="title"/>
+        <result column="brief" property="brief"/>
+        <result column="keywords" property="keywords"/>
+        <result column="cover_url" property="coverUrl"/>
+        <result column="ip" property="ip"/>
+        <result column="sort" property="sort"/>
+        <result column="up_count" property="upCount"/>
+        <result column="down_count" property="downCount"/>
+        <result column="click_count" property="clickCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="check_state" property="checkState"/>
+        <result column="is_display" property="isDisplay"/>
+        <result column="is_recommend" property="isRecommend"/>
+    </resultMap>
+
+    <sql id="SearchListQueryFields">
+        <if test="true">
+            id, author_id, author_name, title, brief,
+            cover_url, keywords, up_count, down_count, click_count, comment_count
+        </if>
+    </sql>
+
+    <resultMap id="SearchListResultMap"
+               type="cn.tedu.tmall.admin.content.pojo.vo.search.ArticleSearchVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="title" property="title"/>
+        <result column="brief" property="brief"/>
+        <result column="cover_url" property="coverUrl"/>
+        <result column="keywords" property="keywords"/>
+        <result column="up_count" property="upCount"/>
+        <result column="down_count" property="downCount"/>
+        <result column="click_count" property="clickCount"/>
+        <result column="comment_count" property="commentCount"/>
+    </resultMap>
+
+</mapper>

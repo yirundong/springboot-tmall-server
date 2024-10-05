@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.mall.dao.persist.mapper.CategoryMapper">
+
+    <!-- CategoryStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            <include refid="StandardQueryFields"/>
+        FROM
+            mall_category
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<CategoryListItemVO> list(); -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            mall_category
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <!-- List<CategoryListItemVO> listByParent(Long parentId); -->
+    <select id="listByParent" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            mall_category
+        WHERE
+            parent_id=#{parentId}
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            id, name, parent_id, depth, keywords,
+            sort, icon, enable, is_parent, is_display
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.CategoryStandardVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="depth" property="depth"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="icon" property="icon"/>
+        <result column="enable" property="enable"/>
+        <result column="is_parent" property="isParent"/>
+        <result column="is_display" property="isDisplay"/>
+    </resultMap>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, name, parent_id, depth, keywords,
+            sort, icon, enable, is_parent, is_display
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.CategoryListItemVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="depth" property="depth"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="icon" property="icon"/>
+        <result column="enable" property="enable"/>
+        <result column="is_parent" property="isParent"/>
+        <result column="is_display" property="isDisplay"/>
+    </resultMap>
+
+</mapper>

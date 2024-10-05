@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.mall.dao.persist.mapper.GoodsMapper">
+
+    <!-- GoodsStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            <include refid="StandardQueryFields"></include>
+        FROM
+            mall_goods
+        LEFT JOIN mall_goods_detail ON mall_goods_detail.goods_id=mall_goods.id
+        WHERE
+            mall_goods.id=#{id}
+    </select>
+
+    <!-- List<GoodsListItemVO> list(); -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            mall_goods
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <!-- List<GoodsSearchVO> listSearch(); -->
+    <select id="listSearch" resultMap="SearchResultMap">
+        SELECT
+            <include refid="SearchQueryFields"/>
+        FROM
+            mall_goods
+        WHERE
+            check_state=1
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <!-- List<GoodsListItemVO> listByCategory(Long categoryId); -->
+    <select id="listByCategory" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            mall_goods
+        WHERE
+            category_id=#{categoryId}
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            mall_goods.id,
+            mall_goods.category_id,
+            mall_goods.category_name,
+            mall_goods.bar_code,
+            mall_goods.title,
+            mall_goods.brief,
+            mall_goods.cover_url,
+            mall_goods.sale_price,
+            mall_goods.keywords,
+            mall_goods.sort,
+            mall_goods.is_recommend,
+            mall_goods.check_state,
+            mall_goods.is_put_on,
+            mall_goods.sales_count,
+            mall_goods.comment_count,
+            mall_goods.positive_comment_count,
+            mall_goods.negative_comment_count,
+            mall_goods_detail.detail,
+            mall_goods.gmt_create,
+            mall_goods.gmt_modified
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.GoodsStandardVO">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="bar_code" property="barCode"/>
+        <result column="title" property="title"/>
+        <result column="brief" property="brief"/>
+        <result column="cover_url" property="coverUrl"/>
+        <result column="sale_price" property="salePrice"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="is_recommend" property="isRecommend"/>
+        <result column="check_state" property="checkState"/>
+        <result column="is_put_on" property="isPutOn"/>
+        <result column="sales_count" property="salesCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="positive_comment_count" property="positiveCommentCount"/>
+        <result column="negative_comment_count" property="negativeCommentCount"/>
+        <result column="detail" property="detail"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, category_id, category_name, bar_code, title,
+            brief, cover_url, sale_price, keywords, sort,
+            is_recommend, check_state, is_put_on, sales_count, comment_count,
+            positive_comment_count, negative_comment_count
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.GoodsListItemVO">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="bar_code" property="barCode"/>
+        <result column="title" property="title"/>
+        <result column="brief" property="brief"/>
+        <result column="cover_url" property="coverUrl"/>
+        <result column="sale_price" property="salePrice"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="is_recommend" property="isRecommend"/>
+        <result column="check_state" property="checkState"/>
+        <result column="is_put_on" property="isPutOn"/>
+        <result column="sales_count" property="salesCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="positive_comment_count" property="positiveCommentCount"/>
+        <result column="negative_comment_count" property="negativeCommentCount"/>
+    </resultMap>
+
+    <sql id="SearchQueryFields">
+        <if test="true">
+            id, category_name, title, brief, cover_url,
+            sale_price, keywords, sort, is_recommend, sales_count,
+            comment_count, positive_comment_count, gmt_create, gmt_modified
+        </if>
+    </sql>
+
+    <resultMap id="SearchResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.GoodsSearchVO">
+        <id column="id" property="id"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="title" property="title"/>
+        <result column="brief" property="brief"/>
+        <result column="cover_url" property="coverUrl"/>
+        <result column="sale_price" property="salePrice"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="is_recommend" property="isRecommend"/>
+        <result column="sales_count" property="salesCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="positive_comment_count" property="positiveCommentCount"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+</mapper>

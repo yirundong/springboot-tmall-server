@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.content.dao.persist.mapper.CommentMapper">
+
+    <!-- CommentStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            <include refid="StandardQueryFields"/>
+        FROM
+            content_comment
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<CommentListItemVO> listByResourceType(Integer resourceType); -->
+    <select id="listByResourceType" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            content_comment
+        WHERE
+            resource_type=#{resourceType}
+        ORDER BY
+            id DESC
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            id, author_id, author_name, resource_type, resource_id,
+            content, ip, floor, up_count, down_count,
+            check_state, is_display, gmt_create, gmt_modified
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tmall.admin.content.pojo.vo.CommentStandardVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="resource_type" property="resourceType"/>
+        <result column="resource_id" property="resourceId"/>
+        <result column="content" property="content"/>
+        <result column="ip" property="ip"/>
+        <result column="floor" property="floor"/>
+        <result column="up_count" property="upCount"/>
+        <result column="down_count" property="downCount"/>
+        <result column="check_state" property="checkState"/>
+        <result column="is_display" property="isDisplay"/>
+        <result column="detail" property="detail"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, author_id, author_name, resource_type, resource_id,
+            content, ip, floor, up_count, down_count,
+            check_state, is_display, gmt_create, gmt_modified
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.tmall.admin.content.pojo.vo.CommentListItemVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="resource_type" property="resourceType"/>
+        <result column="resource_id" property="resourceId"/>
+        <result column="content" property="content"/>
+        <result column="ip" property="ip"/>
+        <result column="floor" property="floor"/>
+        <result column="up_count" property="upCount"/>
+        <result column="down_count" property="downCount"/>
+        <result column="check_state" property="checkState"/>
+        <result column="is_display" property="isDisplay"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,12 @@
+# 激活Profile配置
+spring:
+  profiles:
+    active: dev
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+
+knife4j:
+  enable: true

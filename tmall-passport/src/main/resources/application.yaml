@@ -1,0 +1,59 @@
+# ####################################### #
+# 此文件是本项目的主配置文件，所有配置将被应用 #
+# ####################################### #
+
+# 服务器的配置
+server:
+  # Servlet（Java用于处理请求的组件）的配置
+  servlet:
+    # 编码配置
+    encoding:
+      # 强制使用指定的编码
+      force: true
+      # 字符集
+      charset: UTF-8
+
+# Spring的配置
+spring:
+  # Profile的配置
+  profiles:
+    # 激活哪些Profile配置
+    active: dev
+  # Jackson框架的配置
+  jackson:
+    # 响应的JSON结果中默认包含什么样的属性
+    default-property-inclusion: non_null
+  # 数据源的配置
+  datasource:
+    # 连接数据库的URL
+    url: jdbc:mysql://${tmall.datasource.host}:${tmall.datasource.port}/tmall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    # 数据库用户名
+    username: ${tmall.datasource.username}
+    # 数据库密码
+    password: ${tmall.datasource.password}
+    # Druid连接池的配置
+    druid:
+      # 初始化连接数量
+      initial-size: ${tmall.datasource.initial-size}
+      # 最大激活数量
+      max-active: ${tmall.datasource.max-active}
+  # Redis配置
+  redis:
+    # 主机
+    host: ${tmall.redis.host}
+    # 端口
+    port: ${tmall.redis.port}
+    # 用户名
+    username: ${tmall.redis.username}
+    # 密码
+    password: ${tmall.redis.password}
+
+# MyBatis Plus配置
+mybatis-plus:
+  # 配置SQL语句的XML文件的位置
+  mapper-locations: classpath:mappers/**/*.xml
+
+# Knife4j配置
+knife4j:
+  # 开启增强模式
+  enable: true

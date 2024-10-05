@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.content.dao.persist.mapper.CategoryMapper">
+
+    <!-- CategoryStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            <include refid="StandardQueryFields"/>
+        FROM
+            content_category
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<CategoryListItemVO> list(); -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            content_category
+        ORDER BY
+            sort DESC, id
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            id, name, keywords, sort, enable, is_display
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tmall.admin.content.pojo.vo.CategoryStandardVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="enable" property="enable"/>
+        <result column="is_display" property="isDisplay"/>
+    </resultMap>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, name, keywords, sort, enable, is_display
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.tmall.admin.content.pojo.vo.CategoryListItemVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="enable" property="enable"/>
+        <result column="is_display" property="isDisplay"/>
+    </resultMap>
+
+</mapper>

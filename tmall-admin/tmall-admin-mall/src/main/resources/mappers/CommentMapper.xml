@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tmall.admin.mall.dao.persist.mapper.CommentMapper">
+
+    <!-- CommentStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            <include refid="StandardQueryFields"/>
+        FROM
+            mall_comment
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<CommentListItemVO> list() -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+        <include refid="ListQueryFields"/>
+        FROM
+            mall_comment
+        ORDER BY
+            id DESC
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            id, author_id, author_name, goods_id, type,
+            content, check_state, gmt_create, gmt_modified
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.CategoryStandardVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+        <result column="check_state" property="checkState"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, author_id, author_name, goods_id, type,
+            content, check_state, gmt_create, gmt_modified
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.tmall.admin.mall.pojo.vo.CommentListItemVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+        <result column="check_state" property="checkState"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+</mapper>

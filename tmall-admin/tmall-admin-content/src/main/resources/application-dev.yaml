@@ -1,0 +1,37 @@
+# ######################## #
+# 当前文件是【开发环境】中的配置 #
+# ######################## #
+
+# 服务器配置
+server:
+  port: 28181
+
+# 连接数据库的配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/tmall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 54250yrd
+    druid:
+      # Druid数据库连接池的配置：初始化连接数
+      initial-size: 2
+      # Druid数据库连接池的配置：最大激活数量
+      max-active: 5
+  redis:
+    host: localhost
+    port: 6379
+    username: ~
+    password: ~
+
+# 日志的配置
+logging:
+  level:
+    cn.tedu: debug
+
+# 自定义配置
+tmall:
+  jwt:
+    secret-key: k4^&32flj5Ss(Jf&*(5%DK3da
+    duration-in-minute: 43200
+  dao:
+    default-query-page-size: 5
